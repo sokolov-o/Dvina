@@ -7,10 +7,8 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-using SOV.Common;
-using Amur.Service.Client;
-using Amur.Data.Models;
-using Amur.Data.Filters;
+using Moo.Common;
+using MonsoonApiClient;
 using System.IO;
 
 namespace Import.Files
@@ -212,7 +210,7 @@ namespace Import.Files
                     return FileType.Unknown;
             }
         }
-        static Site GetFileSite(HttpClient client, string filePath)
+        static Site GetFileSite(HttpClient client, string filePath, List<Site> sites)
         {
             FileInfo fi = new FileInfo(filePath);
 
@@ -220,7 +218,7 @@ namespace Import.Files
             string[] cells = fi.Name.Split(splitter);
 
             string siteCode = (cells[0] + splitter + int.Parse(cells[1]) + splitter + int.Parse(cells[2])).ToUpper();
-            List<Site> sites = SitesAPI.GetByFilterAsync(client, new SiteFilter { CodeLike = siteCode, OwnerId = FileSite.EMERCIT_ORG_ID }).Result;
+            ////List<Site> sites = SitesAPI.GetByFilterAsync(client, new SiteFilter { CodeLike = siteCode, OwnerId = FileSite.EMERCIT_ORG_ID }).Result;
             sites = sites.Where(x => x.Code == siteCode).ToList();
 
             if (sites.Count == 1)
@@ -229,9 +227,9 @@ namespace Import.Files
             Console.WriteLine($"(sites.Count ={sites.Count})");
             return null;
         }
-        static List<Data> ParseType2(HttpClient client, string filePath)
+        static List<Data> ParseType2(HttpClient client, string filePath, List<Site> sites)
         {
-            Site site = GetFileSite(client, filePath);
+            Site site = GetFileSite(client, filePath, sites);
             if (site == null)
                 return null;
 

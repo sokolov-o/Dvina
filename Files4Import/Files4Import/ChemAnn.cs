@@ -79,16 +79,16 @@ namespace Import.Files
         }
         static public List<FileRowData> Parse(string filePath)
         {
-            char splitter = ';';
-            string line = "EMPTY";
+            Console.WriteLine($"Parse file {filePath}");
 
-            //Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
-            System.IO.StreamReader sr = new System.IO.StreamReader(filePath, Encoding.GetEncoding(866));//.UTF8);//.GetEncoding("windows-1251")) ;
+            char splitter = ';';
+
+            System.IO.StreamReader sr = new System.IO.StreamReader(filePath, Encoding.GetEncoding(866));//.UTF8);//.GetEncoding("windows-1251"))
             try
             {
                 // READ & CHECK FILE HEADER
 
-                line = sr.ReadLine();
+                string line = sr.ReadLine();
                 string[] cells = line.Split(splitter);
 
                 if (_FILE_COLUMN_NAMES.Count != cells.Length - 2)
@@ -97,14 +97,14 @@ namespace Import.Files
                 for (int i = 0; i < _FILE_COLUMN_NAMES.Count; i++)
                 {
                     if (_FILE_COLUMN_NAMES[i].Replace(" ", "") != cells[i].Replace(" ", ""))
-                        throw new Exception($"Заголовок столбца файла № {i + 1} отличается от формата:[{_FILE_COLUMN_NAMES[i]}] != [{cells[i]}]");
+                        throw new Exception($"Заголовок столбца файла i = {i} отличается от формата:[{_FILE_COLUMN_NAMES[i]}] != [{cells[i]}]");
                 }
-
-                List<FileRowData> ret = new List<FileRowData>();
 
                 // READ DATA BODY
 
+                List<FileRowData> ret = new List<FileRowData>();
                 int iLineCount = 0;
+
                 while (!sr.EndOfStream)
                 {
                     iLineCount++;

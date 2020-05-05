@@ -43,13 +43,43 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataValue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\TFS\Monsoon.Api\DB\Enums\Monsoon.DB.Enums.csproj">
+      <Project>{cc6cabd6-1e8c-412d-90ad-71139e7f1b69}</Project>
+      <Name>Monsoon.DB.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Monsoon\CommonUC\CommonUC.csproj">
+      <Project>{9f9fc5c9-2831-4210-b190-733b058c5783}</Project>
+      <Name>CommonUC</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Monsoon\Common\Common.csproj">
+      <Project>{14ee2bdc-447f-4475-b291-ee3aafc37511}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Monsoon\DbDataObs\DataObsDAL\DataObsDAL.csproj">
+      <Project>{ee915f8e-f337-4d04-806a-e3cab03e4f2d}</Project>
+      <Name>DataObsDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Monsoon\UCMoo\UCMoo.csproj">
+      <Project>{a1ac1301-acb4-4634-9eaf-d00e47f5537d}</Project>
+      <Name>UCMoo</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Files4Import\Files4Import.csproj">
       <Project>{e5f38ca5-520b-4560-b0e0-a76533fd6588}</Project>
       <Name>Files4Import</Name>

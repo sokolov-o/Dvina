@@ -7,9 +7,9 @@ using System.IO;
 
 namespace Import.Files
 {
-    class CommonFileProcess
+    public class CommonFileProcess
     {
-        private static void MoveFile2DirImported(string filePath)
+        public static void MoveFile2DirImported(string filePath)
         {
             FileInfo fi = new FileInfo(filePath);
             string dirImportedName = fi.DirectoryName + "\\Imported";
